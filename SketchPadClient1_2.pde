@@ -14,6 +14,8 @@ void setup(){
   //size(600,600);
   size(1280,768);//For Android
   background(255);
+  String a = Server.ip();
+  println(a);
   //lines = loadStrings("http://people.ucsc.edu/~milahee/Data.txt");
 }
 void draw(){
@@ -36,7 +38,8 @@ void draw(){
 
 void write_file(){
   try{
-        URL oracle = new URL("http://192.168.0.114/index1.php?x="+mouseX+"&y="+mouseY+"&px="+pmouseX+"&py="+pmouseY+"&st="+stroke);
+        //URL oracle = new URL("http://192.168.0.114/index1.php?x="+mouseX+"&y="+mouseY+"&px="+pmouseX+"&py="+pmouseY+"&st="+stroke);
+        URL oracle = new URL("http://"+Server.ip()+"/index1.php?x="+mouseX+"&y="+mouseY+"&px="+pmouseX+"&py="+pmouseY+"&st="+stroke);
         BufferedReader in = new BufferedReader(
         new InputStreamReader(oracle.openStream()));
         in.close();
@@ -46,7 +49,9 @@ void write_file(){
 }
 
 void read_file(){
- lines = loadStrings("http://192.168.0.114/Data.txt");
+ //lines = loadStrings("http://192.168.0.114/Data.txt");
+  lines = loadStrings("http://"+Server.ip()+"/Data.txt");
+
   //  lines = loadStrings("C:\\Users\\UCSC_UAV\\Documents\\Processing\\workspace\\SketchPadServer\\Data.txt");
   if(lines.length >= 1){
     for(int inc=0; inc < lines.length; inc++){
